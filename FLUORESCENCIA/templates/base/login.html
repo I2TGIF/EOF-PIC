@@ -1,0 +1,25 @@
+{% extends 'base/base.html'%}
+
+{%block content %}
+    
+    {% load crispy_forms_tags %}
+      <div class="container align-items-center mt-2">
+        <div class="row justify-content-md-center">
+          <div class="col-sm-5">
+            <div class="card border-info mt-4">
+              <div class="card-header">
+                Iniciar Sesión
+              </div>
+              <div class="card-body text-left">
+                <p> 
+                  <form action="" method="post">
+                    {% crispy form%}
+                    {% csrf_token %}
+                  </form>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{%endblock%}

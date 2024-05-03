@@ -1,0 +1,3 @@
+# SoftwareDC
+
+Software para la detección de cancer de cuello uterino y mama con las técnicas de espectroscopia óptica de fluorescencia, termografía y bioimpedancia...

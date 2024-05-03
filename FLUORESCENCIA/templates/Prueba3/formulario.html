@@ -1,0 +1,252 @@
+<!-- #############################################################################
+###### Template para generar el formulario de ingreso de la nueva paciente #######
+###############################################################################-->
+{% extends 'base/base.html'%}
+{% load crispy_forms_tags %}
+{% crispy formulario formulario.helper %}
+
+
+{%block content%}
+
+<script>
+  $(function () {
+    $("#datetimepicker1").datetimepicker({
+      format: 'DD/MM/YYYY HH:mm',
+    });
+  });
+</script>
+<style> 
+  .navbar-custom { 
+      background-color: #80BBC4; 
+  } 
+ 
+</style> 
+  <nav class="navbar navbar-custom navbar-expand px-0 py-1 justify-content-between" background-color="#e91e63!important">
+
+    <div class="navbar-brand text-light ml-2" >
+      <a href="{% url 'welcome' %}" style="color: azure;"><i class="fas fa-arrow-circle-left" type= "button" ></i> </a>
+      Formulario registro de paciente
+    </div>
+  </nav>
+<form  method="POST"> <!--agragar esto para meter archivos enctype="multipart/form-data"-->
+  
+    {% csrf_token%}
+    <div class="card card-sm border-info mb-3 mr-3 ml-3 mt-4" >
+        <div class="card-header ">
+          <h6 class="card-title-sm border-info mt-0 mb-0">Información</h6>
+        </div>
+        <div class="card-body px-4 py-1">
+          <p class="card-text py-0 mt-0">
+              <div class= "row mr-3">
+                <div class="col-3 mt-0">
+                  <div class= "input-container">
+                    {{ form.Nombre|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="col-3">
+                  {{ form.Apellido|as_crispy_field }}
+                </div>
+                <div class="col-3">
+                   {{ form.DocumentoIdentificacion|as_crispy_field }}
+                </div>
+                <div class="col-3">
+                  {{ form.FechaNacimiento|as_crispy_field }}
+                </div>
+                
+              </div>
+              <div class= "row mr-3">
+                <div class="col-3">
+                  {{ form.Edad|as_crispy_field }}
+                </div>
+                <div class="col-3">
+                  {{ form.EstadoCivil|as_crispy_field }}
+                </div>
+                <div class="col-3">
+                   {{ form.Escolaridad|as_crispy_field }}
+                </div>
+                <div class="col-3">
+                  {{ form.Ocupacion|as_crispy_field }}
+                </div>
+              </div>
+          </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3 mr-3 ml-3 mt-4" >
+      <div class="card-header ">
+        <h6 class="card-title  mt-0 mb-0">Información de Contacto</h6>
+      </div>
+      <div class="card-body px-4 py-1 mr-3">
+        <p class="card-text mr-3">
+            <div class= "row mr-3">
+              <div class="col-3">
+                {{ form.Departamento|as_crispy_field }}
+              </div>
+              <div class="col-3">
+                {{ form.Municipio|as_crispy_field }}
+              </div>
+              <div class="col-3">
+                {{ form.Zona|as_crispy_field }}
+              </div>
+              <div class="col-3">
+                 {{ form.Telefono|as_crispy_field }}
+              </div>
+            </div>
+            <div class= "row mr-3">
+              <div class="col-12">
+                {{ form.Direccion|as_crispy_field }}
+              </div>
+            </div>
+        </p>
+      </div>
+  </div>
+  <div class="card border-info mb-3 mr-3 ml-3 mt-4" >
+    <div class="card-header ">
+      <h6 class="card-title border-info mt-0 mb-0">Información Médica</h4>
+    </div>
+    <div class="card-body px-4 py-1 mr-3">
+      <p class="card-text mr-3">
+          <div class= "row mr-3">
+            <div class="col-3">
+              {{ form.Seguridadsocial|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Partos|as_crispy_field }}
+            </div>
+            <div class="col-3">
+               {{ form.Edadprimerparto|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Menarca|as_crispy_field }}
+            </div>
+            
+          </div>
+          <div class= "row mr-3">
+            <div class="col-3">
+              {{ form.EdadinicioRS|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Abortos|as_crispy_field }}
+            </div>
+            <div class="col-3">
+               {{ form.Gravidex|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Paridad|as_crispy_field }}
+            </div>
+          </div>
+          <div class= "row mr-3">
+            <div class="col-3">
+              {{ form.Metodo_Anticompceptivo|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Fecha_ultimaMenstura|as_crispy_field }}
+            </div>
+            
+            <div class="col-3">
+               {{ form.CirugiaGinecologica|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.ETS|as_crispy_field }}
+            </div>
+          </div>
+          <div class= "row mr-3">
+            <div class="col-3">
+              {{ form.AntecedenteFami|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Fuma|as_crispy_field }}
+            </div>
+            <div class="col-3">
+               {{ form.ConsumoLicor|as_crispy_field }}
+               
+            </div>
+            <div class="col-3">
+              {{ form.Vivos|as_crispy_field }}
+            </div>
+          </div>
+      </p>
+    </div>
+</div>
+
+  <div class="card border-dark mb-3 mr-3 ml-3 mt-4" >
+    <div class="card-header ">
+      <h6 class="card-title border-info mt-0 mb-0">Información Clinica</h4>
+    </div>
+    <div class="card-body px-4 py-1 mr-3">
+      <p class="card-text mr-3">
+          <div class= "row mr-3">
+            <div class="col-3">
+              {{ form.Fecha_Primera_Atencion|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Citologia|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Fecha_Citologia|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Colposcopia|as_crispy_field }}
+            </div>
+            
+          </div>
+          <div class= "row mr-3">
+            <div class="col-3">
+              {{ form.Control_citologico|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Control_colposcopico|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Biopsia|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Control_Histologico|as_crispy_field }}
+            </div>
+          </div>
+          <div class= "row mr-3">
+            <div class="col-3">
+              {{ form.Tratamiento|as_crispy_field }}
+            </div>
+            <div class="col-3">
+              {{ form.Fecha_tratamiento|as_crispy_field }}
+            </div>
+            
+            <div class="col-3">
+              {{ form.Fecha_Ultimocontrol|as_crispy_field }}
+            </div>
+            
+            <div class="col-3">
+              {{ form.Hallazgo_mama|as_crispy_field }}
+            </div>
+          </div>
+      </p>
+    </div>
+  </div>
+
+  <div class="col-12 text-center mb-3">
+    <div class="row">
+      <div class="col-4 text-center mb-3">
+        
+        <button type="submit" class="btn btn-dark btn-block text-center">Guardar</button>
+        
+      </div>
+      <div class="col-4 text-center mb-3"> 
+        
+        <button type="submit" class="btn btn-danger btn-block text-center" href="{% url 'welcome' %}" >Siguiente</button>
+        
+        
+      </div>
+      <div class="col-4 text-center mb-3">
+        <button type="submit" class="btn btn-dark btn-block text-center" href="{% url 'welcome' %}" >Salir</button>
+        
+      </div>
+    </div>
+  </div>
+</form>
+
+{%endblock%}
+
+
+
+

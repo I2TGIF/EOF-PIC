@@ -1,0 +1,82 @@
+{% extends 'base/base.html'%}
+{% load crispy_forms_tags %}
+{% crispy formulario formulario.helper %}
+
+{%block content %}             
+
+<style> 
+    .navbar-custom { 
+        background-color: #80BBC4; 
+    } 
+  </style> 
+  <nav class="navbar navbar-custom navbar-expand px-0 py-1 justify-content-between" background-color="#e91e63!important">
+
+    <div class="navbar-brand text-light ml-2" >
+      <a href="{% url 'patient' registro.id %}" style="color: azure;"><i class="fas fa-arrow-circle-left" type= "button" ></i> </a>
+      {% with share_text=registro.Nombre|add:" "|add:registro.Apellido %}
+        Toma de muestra Paciente: {{share_text}}
+      {% endwith %}
+    </div>
+  </nav>  
+    <table>
+        Resultados
+        
+        <div class="col-xs-2 col-md-2 ">
+            <td WIDTH="655">  
+                <div class="card border-info mb-3 mr-5 ml-5" style="max-width: 100rem;">
+                    <div class="card-header ">
+                        <h6 align="center" class="card-title-sm border-info mt-0 mb-0">Gráfica Clasificación por PCA </h6>
+                    </div>
+                    <h5 align="center">
+                   
+                    <span  class="badge badge-danger">PATOLÓGICA</span>
+                    <span  class="badge badge-info">NO PATOLÓGICA</span>
+                    </h5>
+                    {% if process_flag %}                    
+                    {% for i in n %}
+                        {% with name=NomImag4|add:".jpg" %}
+                        <p align="center">  
+                            <img class="img-responsive" src="{{name}}" width="335" height="328"/>
+                        </p> 
+                        {% endwith %}  
+                    {% endfor %} 
+                    {% endif %} 
+                </div> 
+            </td>  
+            <td WIDTH="655">                      
+                <div class="card border-info mb-3 mr-5 ml-5" style="max-width: 80rem;">
+                    
+                    <div class="card-header ">
+                        <h6 align="center" class="card-title-sm border-info mt-0 mb-0">Procesamiento Imágenes Videocolpocopicas </h6>
+                    </div>
+                    
+                    {% if image_flag %}
+                    {% for i in n %}   
+                        {% with name=images7 %} 
+                        <p align="center">
+                            <img class="img-responsive" src="{{ name }}"  width="325" height="325" HSPACE="20" VSPACE="20"/>
+                        </p>
+                        {% endwith %}
+                            
+                    {% endfor %}
+                    {% endif %} 
+                        
+                </div>  
+            </td>
+        </div>
+            
+        
+    </table>       
+        
+
+    <div class="card border-info mb-5 mr-5 ml-5" style="max-width: 76rem;">          
+        <div class="card-header border-info mt-0 mb-0">
+            <p  align="center" style="color:#030507;"><i class="fas fa-book-medical"></i>Observaciones clinicas</p> 
+        </div>                                   
+        <b><p style="color:#1f1717;">   Hallazgo en imagen Videocolposcopica:</p></b>
+        <p class='align-middle text-center'>{{nota.Hallazgo_imagen}}</p>
+        <b><p class='align-middle text-center'><p style="color:#1b1616;">   Nota Medica:</p></b>
+        <p class='align-middle text-center'>{{nota.Nota}}</p>      
+    </div>
+    </div>
+{%endblock%}

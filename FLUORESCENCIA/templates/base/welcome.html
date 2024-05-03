@@ -1,0 +1,68 @@
+
+{% extends 'base/base.html'%}
+
+{%block content %}
+<div class="alert alert-dismissible-sm py-2 mr-1 ml-1 alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Bienvenido <b>{{request.user.username}}</b>,
+      su rol de navegación es: 
+      {%if request.user.is_investigador%}
+      <b>Investigador</b>
+      {%endif%}
+      {%if request.user.is_medical%}
+      <b> Medico</b>
+      {%endif%}
+      {%if request.user.is_personalsalud%}
+      <b>Personal de la salud</b>
+      {%endif%}
+      {%if request.user.is_superuser%}
+      <b>Administrador</b>
+      {%endif%}
+</div>
+
+  <div class="row mr-4 ">
+    <div class="card border-info col-md-6 mb-3 ml-5 px-0">
+      <div class="card-header text-center">Cancer de Cuello Uterino</div>
+      <div class="card-body">
+        <p class="h7" align="justify">
+          El cáncer de cuello uterino es la cuarta causa principal de muerte en mujeres a nivel mundial y 
+          el cuarto tipo de cáncer más común en la población femenina. La OMS lo declaro como un problema de 
+          salud publica a nivel global. En Colombia las estadísticas muestran que el CCU es la primera causa
+          de muerte por cáncer entre mujeres de 30 a 59 años. Mejorar la forma de diagnóstico en estadios tempranos 
+          es de gran relevancia y sería una solución a la problemática, se afirma que la detección precoz es 
+          la mejor y más económica para reducir la taza de mortalidad por CCU.  
+          <p align="center">
+            <img class="img-responsive" height="150" src="/media/prevención.jpg" />
+            <p><small><i>Tomada de: Santiago Digital, Prevención en el día internacional de detección del cáncer de cuello uterino [2018]</i> </small></p>
+          </p>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-5 ml-4 text-center mb-3  px-0">
+      <div class="row ml-3 text-center">
+        <div class="col-md-6 ">
+          <a href="{% url 'formulario' %}">
+            <img class="img-responsive" height="200" src="/media/formulario.png" />
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="{% url 'registro' %}">
+            <img class="img-responsive" height="200" src="/media/registro.png"  />
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="{% url 'about' %}" target="_blank">
+            <img class="img-responsive" height="200" src="/media/tutorial.png"  />
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="/logout">
+            <img class="img-responsive" height="200" src="/media/logout.png"  />
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{%endblock%}

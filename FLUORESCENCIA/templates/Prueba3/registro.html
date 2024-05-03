@@ -1,0 +1,127 @@
+<!-- #############################################################################
+######  Presenta la tabla de todas las pacientes registradas con sus datos  ######
+######  basicos y esta el botor para el ingreso del medico o investigador.  ######
+######  Tambien el boton de eliminar o editar el registro.                  ######
+###############################################################################-->
+{% extends 'base/base.html'%}
+
+{%block content %}
+<style> 
+  /* Modify the background color */ 
+    
+  .navbar-custom { 
+      background-color: #80BBC4; 
+  } 
+ 
+</style> 
+  <nav class="navbar navbar-custom navbar-expand px-0 py-1 justify-content-between" background-color="#e91e63!important">
+    <div class="navbar-brand text-light ml-2" >
+      <a href="{% url 'welcome' %}" style="color: azure;"><i class="fas fa-arrow-circle-left" type= "button" ></i> </a>
+      Lista de registro de pacientes
+    </div>
+    
+
+    <form action="{% url 'registro'%}" method="GET" class="form-inline mr-2">
+      {% csrf_token %}
+      <input name= "q" class="form-control mr-sm-2" type="search" placeholder="Buscar Registro" aria-label="Search" id="Search">
+      <button class="btn btn-outline-light sm" type="submit">Buscar</button>
+    </form>
+  </nav>
+  {%if search_flag%}
+    <div class="alert alert-info mt-1" role="alert">
+      Hay una busqueda activa <a href="{% url 'registro'%}" class="alert-link">Para deshacer busqueda de click aqui!! </a>
+    </div>
+  {%endif%}
+
+  {%if registro %}
+  
+    <table class="table-sm table-striped table-bordered mt-1" cellspacing="0" width="100%">
+      <thead>
+        <tr class= "text-center">
+          <th align-middle text-center scope="col">No.</th>
+          <th scope="col" >Documento</th>
+          <th scope="col" >Nombre Completo</th>
+          <th scope="col" >Fecha de Nacimiento</th>
+          <th scope="col" >Ocupación</th>
+          <th scope="col" >Investigador</th>
+          <th scope="col" >Medico</th>
+          <th scope="col" >Editar</th>
+          <th scope="col" >Eliminar</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {%for registro in registro %}
+          <tr >
+              <td class='align-middle text-center' >{{registro.id}}</td>
+              <td >{{registro.DocumentoIdentificacion}}</td>
+              {% with share_text=registro.Nombre|add:" "|add:registro.Apellido %}
+              <td align-middle text-justify>{{share_text}}</td>
+              {% endwith %}
+              
+              <td class='align-middle text-center'>{{registro.FechaNacimiento}}</td>
+              <td class='align-middle text-center'>{{registro.Ocupacion}}</td>
+              <!--<td>{{registro.direccion}}</td>-->
+              <td class='align-middle text-center'>
+                <a class="btn btn-warning btn-sm" href="{% url 'patient2' registro.id %}">
+                  <i class="fas fa-microscope"></i>
+                </a>
+              </td>
+              <td class='align-middle text-center'>
+                  <a class="btn btn-info btn-sm" href="{% url 'patient' registro.id %}">
+                    <i class="fas fa-notes-medical"></i>
+                  </a>
+              </td>
+              <td class='align-middle text-center'>
+                <a type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Editar Registro" href="{% url 'edita' registro.id %}"> <!--segun el nombre de la vista'name = edita'-->
+                  <i class="fas fa-edit"></i>
+                </a>
+              </td>
+                <!--<a class="btn btn-outline-danger btn-sm mr-2" data-toggle="modal" data-target="#exampleModal">
+                  <i class="fas fa-trash-alt"></i>
+                </a>-->
+              <td class='align-middle text-center'>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Registro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        ¿Desea eliminar registro {{registro.Nombre}} ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-sm">Si, eliminar</button>
+                        <button type="button" class="btn btn- btn-sm">
+                            <a class="text-white"  href="{% url 'registro' %}">
+                            Cancelar
+                            </a>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a class="btn btn-danger btn-sm" href="{% url 'elimina' registro.id %} ">
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+              </td>
+              
+          </tr>
+        {% endfor %}  
+      </tbody>
+    </table> 
+ 
+  {% else %}
+    <div class='align-middle'>
+      <div class= 'display-4 text-center' >
+        <i class="fas fa-exclamation-circle mt-4  mb-4"></i>
+        <div class='h2 text-center align-middle mt-3 mb-4'>
+          Aún no hay registros!
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{%endblock%}

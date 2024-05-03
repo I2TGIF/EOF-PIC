@@ -1,0 +1,29 @@
+
+{% extends 'base/base.html'%}
+
+{%block content %}
+<div class="row mt-4 col-md-12">
+  <div class="card border-info col-md-5 mb-1 ml-5 px-0">
+    <div class="card-header text-center">Tutorial</div>
+    <div class="card-body">
+      <iframe width="505" height="315" src="https://www.youtube.com/embed/6QIANPV99_k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div> 
+  <div class="card border-info col-md-6 mb-1 ml-4 px-0">
+    <div class="card-header text-center">Sobre el Software</div>
+    <div class="card-body">
+      <p  class="h7 text-justify" >El software brinda soporte en la detección de estadios tempranos del CCU, esto, por medio del
+        procesamiento de los datos obtenidos con la técnica de espectroscopia óptica de fluorescencia y 
+        el procesamiento de las imágenes videocolposcopia. </p>
+      <p class="h7 text-justify">Está Desarrollado en lenguaje de programación Python y utilizando el framework de Django.
+        El factor económico y el difícil acceso al sistema de salud es una causa que 
+        incrementa la tasa de mortalidad, por lo tanto se genera una alternativa que llegua a la población
+        alejada del casco urbano (zonas rurales) y que permite la obtención de un diagnostico en el menor
+        tiempo posible, en una visita médica como objetivo. Además suple la necesidad de utilizar 
+        herramientas computacionales accesibles, de bajo costo e inversión que permiten acoplar las técnicas en estudio y realizar el diagnóstico
+        en tiempo real reduciendo tiempo y procesos. </p>
+    </div>
+  </div>  
+</div>
+
+{%endblock%}

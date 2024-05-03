@@ -1,0 +1,89 @@
+
+
+<!DOCTYPE html>
+<html lang='es'>
+  
+    <body>
+        <table width="100%" border="1" cellspacing="0" cellpadding="1">
+            <tr bgcolor="#59636F">
+            <td><b><font color="#FFFFFF"><h1 align="center"><i>Software de soporte para deteccion de Cancer de Cuello Uterino</i></h1></font></b></td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="2">
+            
+                <H3><a href="{% url 'patient' registro2.id %}"></a>
+                {% with share_text=registro2.Nombre|add:" "|add:registro2.Apellido %}
+                    Resultados Paciente: {{share_text}}
+                {% endwith %}</H3>
+            
+            <th width="50%">
+                <h4 align="center" class="card-title-sm border-info mt-0 mb-0">Grafica Clasificacion por PCA </h4>
+                <h5 align="center">
+                    <table>
+                         
+                        <td style="color:#ac1126;" align="center">  
+                            PATOLOGICA
+                        </td>
+                        <td style="color:#3f11ac;" align="center">  
+                            NO PATOLOGICA
+                        </td> 
+                    </table>
+                    {% if process_flag2 %}                    
+                    {% for i in n2 %}
+                        {% with name=NomImag4|add:".jpg" %}
+                        <p align="center">  
+                            <img class="img-responsive" src="{{name}}" width="335" height="328"/>
+                        </p> 
+                        {% endwith %}  
+                    {% endfor %} 
+                    {% endif %} 
+            </th>
+            <th  width="50%">
+                <h4 align="center" class="card-title-sm border-info mt-0 mb-0">Procesamiento Imagenes Videocolpocopicas </h4>
+                <table>
+                    <td style="color:#ffffff" align="center">  
+                        A
+                    </td>  
+                    <td style="color:#ffffff" align="center">  
+                        PA
+                    </td>
+                </table>
+                {% if image_flag2 %}
+                    {% for i in n2 %}   
+                        {% with name=images8 %} 
+                        <p align="center">
+                            <img class="img-responsive" src="{{ name }}"  width="280" height="270" HSPACE="20" VSPACE="20"/>
+                        </p>
+                        {% endwith %}
+                            
+                    {% endfor %}
+                {% endif %} 
+                
+            </th>
+        </table>
+        
+                
+        <table width="100%" border="1" cellspacing="0" cellpadding="2" mr-3 m3-2>
+            <p align="center" style="color:#030507;"><H3>Observaciones clinicas:</H3></p>
+            <td width="50%">
+                <b><p class='align-middle text-center'><p style="color:#1b1616;">Nota Medica:</p></b>
+                <p class='align-middle text-center'>{{nota2.Nota}}</p>  
+            </td>
+            <td width="50%">
+                <b><p class='align-middle text-center'>Hallazgo en imagen Videocolposcopica:</p></b>
+                <p class='align-middle text-center'>{{nota2.Hallazgo_imagen}}</p>
+            </td>
+        </table> 
+        <p>
+            <table width="100%" border="1"  cellspacing="0" cellpadding="1">
+                <tr bgcolor="#59636F" align="right">
+                <td><b><font color="#FFFFFF"><h4><i>Desarrolado por UNAL-MANIZALES</i></h45></font></b></td>
+                </tr>
+            </table>
+        </p> 
+    
+    </body>
+    
+      
+    
+</html>

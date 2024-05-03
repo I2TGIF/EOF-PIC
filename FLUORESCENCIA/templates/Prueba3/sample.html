@@ -1,0 +1,76 @@
+<!-- #############################################################################
+######  Template para pedirle al usuario subir la imagen y procesar imagen. ######
+######  Tambien permite eliminarla si es una muestra no deseasa (Rol medico)######
+###############################################################################-->
+
+{% extends 'base/base.html'%}
+{% load crispy_forms_tags %}
+{% crispy formulario formulario.helper %}
+
+{%block content%}
+
+  <style> 
+    .navbar-custom { 
+        background-color: #80BBC4; 
+    } 
+  </style> 
+  <nav class="navbar navbar-custom navbar-expand px-0 py-1 justify-content-between" background-color="#e91e63!important">
+
+    <div class="navbar-brand text-light ml-2" >
+      <a href="{% url 'patient' registro.id %}" style="color: azure;"><i class="fas fa-arrow-circle-left" type= "button" ></i> </a>
+      {% with share_text=registro.Nombre|add:" "|add:registro.Apellido %}
+        Toma de muestra Paciente: {{share_text}}
+      {% endwith %}
+    </div>
+    <div class="form-inline mr-2">
+      <button class="btn btn-sm btn-outline-light" data-toggle="modal" data-target="#exampleModal">Limpiar</button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Mensaje de confirmación</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              {% with share_text=registro.Nombre|add:" "|add:registro.Apellido %}
+                Esta acción eliminará de forma permantene todas las imagenes asociadas a la paciente  {{share_text}}.
+                Esta seguro desea continuar?
+              {% endwith %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-ligth" data-dismiss="modal">Descartar</button>
+              <a href= "{% url 'delete-sample' registro.id %}"><button type="button" class="btn btn-sm btn-secondary">Continuar</button></a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  </nav>
+  <div class="card border-info mb-3" style="max-width: 100%;">
+    <div class="card-header" align="center">Análisis de Imágenes Videocolposcópicas</div>
+    <div class="card-body">
+      <div class="col">
+        <div class="row mt-1">
+          <div class="col-sm-5 px-0">
+            <form action="{% url 'sample' registro.id %}" method="post" enctype="multipart/form-data"> 
+              <div class="card mb-2 border-info bg-active px-2 py-1">
+                {% csrf_token %}
+                <p><input id="id_image" class="btn btn-sm btn-light btn-block text-center mx-auto" type="file" accept="image/*" name="image" required></p>
+                <button type="submit" class="btn btn-sm btn-secondary btn-block mt-1">Subir y Procesar</button> 
+              </div>
+            </form>
+          </div>
+          <div class="col-sm-7 px-0">
+            <div class="card mb-2 mr-1 px-2" style="border: none;">
+              <p><b>Toma de muestra:</b> Debe subir una imagen en formato JPG, PNG, Si la imagen subida para procesar no es la mejor por favor dele limpiar y vuelva a subir otra imagen. Se recomienda que la imagen no tenga puntos de luz externos que pueden alterar la prueba. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </div>
+  {%endblock%}

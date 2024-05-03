@@ -1,0 +1,63 @@
+
+{% extends 'base/base.html'%}
+{% load crispy_forms_tags %}
+{% crispy formulario formulario.helper %}
+
+{%block content %}             
+
+<style> 
+    .navbar-custom { 
+        background-color: #80BBC4; 
+    } 
+  </style> 
+  <nav class="navbar navbar-custom navbar-expand px-0 py-1 justify-content-between" background-color="#e91e63!important">
+
+    <div class="navbar-brand text-light ml-2" >
+      <a href="{% url 'patient' registro.id %}" style="color: azure;"><i class="fas fa-arrow-circle-left" type= "button" ></i> </a>
+      {% with share_text=registro.Nombre|add:" "|add:registro.Apellido %}
+        Toma de muestra Paciente: {{share_text}}
+      {% endwith %}
+    </div>
+  </nav>  
+   <form  method="POST"> 
+     {% csrf_token%}
+        <div class="card card-sm border-info mb-3 mr-3 ml-3 mt-4" >
+            <div class="card-header ">
+            <h6 class="card-title-sm border-info mt-0 mb-0">Información</h6>
+            </div>
+            <div class= "row mr-3">
+                <div class="col-6">
+                {{ formN.Hallazgo_imagen|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                {{ formN.Nota|as_crispy_field }}
+                </div>
+            </div>
+            <div class="col-4 text-center mb-3">
+
+                
+                <button type="submit" class="btn btn-dark btn-block text-center">Guardar</button>
+                
+            </div>
+        </div>
+    
+    </form>
+
+
+    <!--<div class="card border-warning mb-3 mr-3 ml-5" style="max-width: 80rem;">
+                    
+                    
+        <div class="card-header border-warning mt-0 mb-0 ">
+            <p  align="center" style="color:#800000;"><i class="fas fa-book-medical"></i>Observaciones clinicas</p> 
+        </div>
+        
+        
+                                        
+        <b><p style="color:#1f1717;">   Hallazgo en imagen Videocolposcopica:</p></b>
+        <p class='align-middle text-center'>{{registro.Hallazgo_imagen}}</p>
+
+
+        <b><p class='align-middle text-center'><p style="color:#1b1616;">   Nota Medica:</p></b>
+        <p class='align-middle text-center'>{{registro.Nota}}</p>    
+    </div>-->
+{%endblock%}

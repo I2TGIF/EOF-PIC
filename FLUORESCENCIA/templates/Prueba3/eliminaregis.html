@@ -1,0 +1,22 @@
+{% extends 'base/base.html'%}
+
+{%block content %}
+  <div class="card border-info ml-3 mb-3" style="max-width: 83rem;">
+    <div class="card-header">¿Desea eliminar registro {{registro.Nombre}} ?</div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <button type="submit" class="btn btn-danger btn-sm">Si, eliminar</button>
+            <button type="button" class="btn btn-info btn-sm">
+                <a class="text-white"  href="{% url 'registro' %}">
+                Cancelar
+                </a>
+            </button>
+                    
+        </form>
+    </div>
+  </div>
+
+
+{%endblock%}

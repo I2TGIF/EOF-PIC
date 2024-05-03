@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang='es'>
+
+  {% load bootstrap4 %}
+  {# CSS Bootstrap #}
+  {% bootstrap_css %}
+  {% block style %}    
+  {% endblock %}
+    <head>
+        {%block header%}
+          <div class="wrapper">
+            
+            <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+            <script defer src="{% static 'fontawesome/js/all.min.js' %}"></script>
+            
+            <div class="pos-f-t align-middle">
+              <nav class="navbar navbar-dark bg-dark shadow py-1 mb-2  text-center align-middle" style="background-color:#008080">
+                <button class="navbar-toggler" style="color:#f3deed;" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fas fa-home"></i>
+                </button>
+                <p class="text-center align-middle">
+                  <span class="navbar-brand ">
+                    <a class=""> 
+                      <p class="h5 w-90 p-2" style="color:#f5deee;"><em>  Software para el soporte a la detección de estadios tempranos de Cancer de Cuello Uterino</em></p>
+                    </a>
+                  </span>
+                </p>
+                <p class="h6 w-10 p-0 mr-2" >
+                  <img class="img-responsive" src="/media/escudo2.png"  width="105" height="40" />
+                </p>
+              </nav>
+            </div>
+            <nav id="sidebar">
+           
+              <div class="collapse" id="navbarToggleExternalContent">
+                <nav class="navbar navbar-dark bg-dark shadow py-1 mb-2  align-middle">
+                  <li><a class= text-white href="{% url 'welcome' %}">
+                    <i class="fas fa-home" style="color:#f5deee;"></i> Inicio
+                  </a></li>
+                  <li><a class= text-white href="{% url 'formulario' %}">
+                    <i class="fas fa-notes-medical" style="color:#f5deee;"></i> Formulario
+                  </a></li>
+                  <li><a class= text-white href="{% url 'registro' %}">
+                    <i class="fas fa-users" style="color:#f5deee;"></i> Registros
+                  </a></li>
+                  
+                  
+                 
+                  <li><a class= text-white href="/logout">
+                    <i class="fas fa-sign-out-alt" style="color:#f5deee;"></i> Cerrar sesión
+                  </a></li>
+                  
+                  <li><a class= text-white href="/register">
+                    <i class="fas fa-user" style="color:#f5deee;"></i> Registrar usuario
+                  </a></li>
+                  
+                  
+                  </nav>
+              </div>
+            
+          </nav>
+          </div>
+        {%endblock%}
+    </head>
+    
+      <title>
+          Detección Cancer Uterino
+          {%block title%}
+          {%endblock%} 
+      </title>
+      
+            
+    <body>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      {%block content%}
+      {%endblock%}
+
+    </div>
+    
+    </body>
+    <footer> 
+    {%block footer%}
+    <nav class="navbar navbar-expand bg-dark px-0 py-0 text-right">
+      <p class="h6 w-80 p-0 mr-4">
+            <a class=""> 
+              <p class="h8" style="color:#f3deed;"><em>Grupo en Instrumentacón Física - Universidad Nacional de Colombia-Sede Manizales</em></p>
+              <p class="h8"></p>
+            </a>
+          
+      </p>
+    </nav>
+    {%endblock%}
+    </footer>
+</html>
