@@ -1,0 +1,18 @@
+Notas aclaratorias 
+
+Para el ingtrso al software el superusuario 
+SofiaCh
+contraseña 
+4444
+
+Se adjunta la información de las pacientes ya creadas y información nueva para el procesamiento de una nueva paciente.
+
+Se crearon 3 pacientes que ya cuentan con su información para el procesamiento
+
+Si se quiere procesar a la paciente en la sección de análisis espectroscópico se dede elegir 120 espectros 
+
+Si se quiere procesar nuevos datos se tiene que eliminar los actuales, tener en cuenta que si se sube archivos con el mismo nombre antes de eliminar los actuales el software encontrara un error 
+
+Se puede subir más imagenes para realizar el procesamiento pero en la hoja de resultados solo se mostrara la ultima de la paciente. 
+
+Se debe realizar los dos procesamientos y llenar las notas antes de ir a la sección de resultados. 
